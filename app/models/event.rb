@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   has_many :reservations
-  has_many :users, throught: :invitations
+  has_many :users, through: :invitations
 
   belongs_to :creator, class_name: "User",
   foreign_key: :creator_id

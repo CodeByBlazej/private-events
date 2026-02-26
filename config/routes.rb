@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root "events#index"
 
   resources :users
-  resources :events, only: [ :index, :show, :new, :create ]
+  resources :events, only: [ :index, :show, :new, :create ] do
+    resource :reservations, only: [ :create, :destroy ]
+  end
   # get "events/index"
   # get "events/create"
   # get "users/index"

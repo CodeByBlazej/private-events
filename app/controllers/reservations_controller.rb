@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   before_action :set_event
 
   def create
-    current_user.reservation.find_or_initialize_by(attended_event: @event)
+    @reservation = current_user.reservations.find_or_initialize_by(attended_event: @event)
 
     if @reservation.persisted?
       redirect_to @event, alert: "You are already attending this event!"
@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    reservation = current_user.reservation.find!(attended_event: @event)
+    reservation = current_user.reservation.find_by!(attended_event: @event)
     reservation.destroy
     redirect_to @event, notice: "You are no longer attending this event."
   end

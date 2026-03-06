@@ -5,6 +5,10 @@
 <p>Date: <%= @event.date %></p>
 
 <div>
+  <%= button_to "Attend this event", event_reservations_path(@event), method: :post %>
+</div>
+
+<div>
   <%= link_to "Back to events", events_path %>
 </div>
 

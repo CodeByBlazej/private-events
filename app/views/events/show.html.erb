@@ -4,8 +4,19 @@
 
 <p>Date: <%= @event.date %></p>
 
+<p>Attendees:</p>
+<% @event.attendees.each do |attendee| %>
+  Name: <%= attendee.name %><br>
+<% end %>
+
+<br>
+
 <div>
   <%= button_to "Attend this event", event_reservations_path(@event), method: :post %>
+</div>
+
+<div>
+  <%= button_to "Cancel attendance", event_reservations_path(@event), method: :delete %>
 </div>
 
 <div>

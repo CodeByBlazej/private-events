@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    reservation = current_user.reservation.find_by!(attended_event: @event)
+    reservation = current_user.reservations.find_by!(attended_event: @event)
     reservation.destroy
     redirect_to @event, notice: "You are no longer attending this event."
   end

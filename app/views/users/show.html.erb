@@ -1,0 +1,17 @@
+<h1>User number: <%= @user.id %></h1>
+
+<p>User name: <%= @user.name %></p>
+
+<p>Attended events: (<%= @user.attended_events.count %>)</p>
+<ol>
+  <% @user.attended_events.each do |attended_event| %>
+    <li>
+      <%= attended_event.location %>
+      <%= attended_event.date %>
+    </li>
+  <% end %>
+</ol>
+
+<div>
+  <%= link_to "Back to users", users_path %>
+</div>

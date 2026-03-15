@@ -1,8 +1,21 @@
 <h1>Events</h1>
-<p>All interesting events in your area!</p>
+<h3>All interesting events in your area!</h3>
+
+<h4>Past events</h4>
 
 <div id="events">
-  <% @events.each do |event| %>
+  <% @events.past.each do |event| %>
+    <%= render event %>
+    <p>
+      <%= link_to "Show this event", event %>
+    </p>
+  <% end %>
+</div>
+
+<h4>Upcoming events</h4>
+
+<div id="events">
+  <% @events.upcoming.each do |event| %>
     <%= render event %>
     <p>
       <%= link_to "Show this event", event %>
@@ -12,4 +25,8 @@
 
 <div>
   <%= link_to "New event", new_event_path %>
+</div>
+
+<div>
+  <%= link_to "Show all users", users_path %>
 </div>

@@ -4,10 +4,12 @@
 
 <p>Date: <%= @event.date %></p>
 
-<p>Attendees:</p>
-<% @event.attendees.each do |attendee| %>
-  Name: <%= attendee.name %><br>
-<% end %>
+<p>Attendees: (<%= @event.attendees.count %>):</p>
+<ol>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= attendee.name %></li>
+  <% end %>
+</ol>
 
 <br>
 

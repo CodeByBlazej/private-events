@@ -8,11 +8,15 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :date, presence: true
 
-  def self.past
-    where(date: ..(Time.current))
-  end
+  scope :past, -> { where(date: ..(Time.current)) }
+  scope :upcoming, -> { where(date: (Time.current)..) }
 
-  def self.upcoming
-    where(date: (Time.current)..)
-  end
+
+  # def self.past
+  #   where(date: ..(Time.current))
+  # end
+
+  # def self.upcoming
+  #   where(date: (Time.current)..)
+  # end
 end

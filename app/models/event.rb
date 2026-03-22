@@ -2,6 +2,9 @@ class Event < ApplicationRecord
   has_many :reservations, foreign_key: "attended_event_id", dependent: :destroy
   has_many :attendees, through: :reservations, source: :attendee
 
+  has_many :invitations, foreign_key: "attended_event_id", dependent: :destroy
+  has_many :invited_attendees, through: :invitations, source: :invited_attendee
+
   belongs_to :creator, class_name: "User",
   foreign_key: :creator_id
 

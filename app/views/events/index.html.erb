@@ -30,3 +30,7 @@
 <div>
   <%= link_to "Show all users", users_path %>
 </div>
+
+<div>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+</div>

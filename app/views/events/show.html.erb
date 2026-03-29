@@ -4,6 +4,8 @@
 
 <p>Date: <%= @event.date %></p>
 
+<p>Creator: <%= @event.creator.name %></p>
+
 <p>Attendees: (<%= @event.attendees.count %>):</p>
 <ol>
   <% @event.attendees.each do |attendee| %>
@@ -12,6 +14,12 @@
 </ol>
 
 <br>
+
+<div>
+  <% if @event.creator == current_user %>
+    <%= button_to "Invite guests", event_invitations_path(@event), method: :post %>
+  <% end %>
+</div>
 
 <div>
   <%= button_to "Attend this event", event_reservations_path(@event), method: :post %>

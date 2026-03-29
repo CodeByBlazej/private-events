@@ -3,6 +3,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+
+    unless can_view?(@event)
+      redirect_to events_path, alert: "This event is private. You need to be invited to view it!"
+    end
   end
 
   def new
@@ -27,5 +31,12 @@ class EventsController < ApplicationController
 
   def event_params
     params.expect(event: [ :date, :location ])
+  end
+
+  def can_view?(event)
+    return true if event.creator == current_user
+    return true if event.invited_attendees.exists?(current_user.id)
+
+    false
   end
 end

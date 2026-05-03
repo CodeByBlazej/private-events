@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  get "invitations/create"
+  # get "invitations/create"
   devise_for :users
   root "events#index"
 
   resources :users
   resources :events, only: [ :index, :show, :new, :create ] do
     resource :reservations, only: [ :create, :destroy ]
+    resource :invitations, only: [ :create, :destroy ]
   end
   # get "events/index"
   # get "events/create"

@@ -13,13 +13,25 @@
   <% end %>
 </ol>
 
+<p>Invited attendees: (<%= @event.invited_attendees.count %>):</p>
+<ol>
+  <% @event.invited_attendees.each do |attendee| %>
+    <li><%= attendee.name %></li>
+  <% end %>
+</ol>
+
 <br>
 
 <div>
   <% if @event.creator == current_user %>
-    <%= button_to "Invite guests", event_invitations_path(@event), method: :post %>
+    <%= form_with url: event_invitations_path(@event), method: :post do %>
+      <%= collection_select(:invitation, :invited_attendee_id, User.where.not(id: @event.invited_attendees.select(:id)) && User.where.not(id: @event.creator), :id, :name, prompt: "Select a user") %>
+
+      <%= submit_tag "Invite" %>
+    <% end %>
   <% end %>
 </div>
+
 
 <div>
   <%= button_to "Attend this event", event_reservations_path(@event), method: :post %>
